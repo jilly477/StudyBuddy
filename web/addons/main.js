@@ -1,27 +1,6 @@
 var p = [];
 
-//var k = {"key":"value"};
-//p.push(k);
-//console.log(p);
-const fs = require('fs') 
-fs.readFile('students.txt', 'utf-8', (err, data) => { 
-    if (err) throw err; 
-    //console.log(data); 
-    var user = {};
-    var line = "MATH ECE"
-    var courses = line.split(' ');
-    user["courses"] = [];
-    for (var course=0; course<courses.length; course++) {
-        user["courses"].push(courses[course]);
-    }
-   // console.log(user["courses"]);
-    var lines = data.split('-');
-    //console.log(lines[0]);
-    for(var line = 0; line < lines.length; line++){
-       // console.log('-----');
-     // console.log(lines[line]);
-    }
-}) 
+
 
 function readInFile() {
     
