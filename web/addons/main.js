@@ -45,5 +45,14 @@ console.log(students);
 
 function findMatches(person) {
     var possibleMatches = [];
-    
+    for (var student=0; student<students.length; student++) {
+        if (students[student]["term"] == person["term"]) {
+            for (var course=0; course<person["courses"].length; course++) {
+                if (students[student]["courses"].includes(person["courses"][course]) && !possibleMatches.includes(students[student])) {
+                    possibleMatches.push(students[student]);
+                }
+            }
+        }
+    }
 }
+
