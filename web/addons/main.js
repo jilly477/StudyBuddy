@@ -1,5 +1,3 @@
-var p = [];
-
 
 
 function readInFile() {
@@ -23,16 +21,17 @@ function formatData(data) {
             var user = {};
             user["name"] = line[i];
             user["term"] = line[i+1];
-            var courses = line[i+2].split(' ');
-            user["courses"] = [];
-            for (var course=0; course<courses.length; course++) {
-                user["courses"].push(courses[course]);
-            }
+            user["courses"] = line[i+2].split(' ');
             user["timezone"] = line[i+3];
             var habits = line[i+4].split(' ');
             user["tod"] = habits[0];
             user["focus"] = habits[1];
             user["style"] = habits[2];
+            user["wantedMembers"] = line[i+5];
+            user["group"] = line[i+6].split(' ');
+            if (user["group"].includes('')) {
+                user["group"] = [];
+            }
             people.push(user);
             if (person == 0) {
                 i++;
@@ -41,6 +40,10 @@ function formatData(data) {
         return(people);
 }
 
-let l = readInFile();
-console.log("------");
-console.log(l);
+let students = readInFile();
+console.log(students);
+
+function findMatches(person) {
+    var possibleMatches = [];
+    
+}
