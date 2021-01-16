@@ -1,5 +1,8 @@
 var p = [];
 
+//var k = {"key":"value"};
+//p.push(k);
+//console.log(p);
 const fs = require('fs') 
 fs.readFile('students.txt', 'utf-8', (err, data) => { 
     if (err) throw err; 
@@ -20,13 +23,22 @@ fs.readFile('students.txt', 'utf-8', (err, data) => {
     }
 }) 
 
-function ReadInFile() {
-    var people = [];
+function readInFile() {
+    
     const fs = require('fs') 
-    fs.readFile('students.txt', 'utf-8', (err, data) => { 
-        if (err) throw err; 
+    try {
+        let data = fs.readFileSync('students.txt', 'utf-8');
+        return formatData(data);
+    } catch (error) {
+        console.log("unable to read file: ", error);
+    }
+   
+}
+
+function formatData(data) {
         var ppl = data.split('-');
         var i = 0;
+        var people = [];
         for (var person=0; person < ppl.length; person++){
             var line = ppl[person].split('\n');
             var user = {};
@@ -42,15 +54,14 @@ function ReadInFile() {
             user["tod"] = habits[0];
             user["focus"] = habits[1];
             user["style"] = habits[2];
-            //console.log(user);
             people.push(user);
             if (person == 0) {
                 i++;
             }
         }
-    }) 
-    return people;
+        return(people);
 }
 
-l = ReadInFile();
+let l = readInFile();
+console.log("------");
 console.log(l);
