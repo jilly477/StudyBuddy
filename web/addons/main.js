@@ -48,7 +48,7 @@ function findMatches(person) {
     for (var student=0; student<students.length; student++) {
         if (students[student]["term"] == person["term"]) {
             for (var course=0; course<person["courses"].length; course++) {
-                if (students[student]["courses"].includes(person["courses"][course]) && !possibleMatches.includes(students[student])) {
+                if (students[student]["courses"].includes(person["courses"][course]) && !possibleMatches.includes(students[student]) && students[student]["wantedMembers"] != 0) {
                     possibleMatches.push(students[student]);
                 }
             }
@@ -56,3 +56,13 @@ function findMatches(person) {
     }
 }
 
+function addToTeam(person,memberName) {
+    person["group"].push(memberName);
+    person["wantedMembers"]--;
+    for (var student=0; student<students.length; student++) {
+        if (students[student]["name"] == memberName) {
+            students[student]["group"].push(person["name"]);
+            students[student]["wantedMembers"]--;
+        }
+    }
+}
